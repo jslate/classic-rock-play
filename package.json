@@ -1,0 +1,11 @@
+{
+  "name": "classic-rock-play",
+  "version": "0.0.1",
+  "description": "Data visualizations using data from fivethirtyeight",
+  "main": "index.js",
+  "author": "Jonathan Slate",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
