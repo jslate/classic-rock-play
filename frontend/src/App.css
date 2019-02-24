@@ -18,8 +18,39 @@ svg circle.blue {
   fill:url(#blueGradient)
 }
 
+svg circle.green {
+  fill:url(#greenGradient)
+}
+
+li.yellow:before {
+    content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="yellowGradient"><stop offset="5%" stopColor="#f7da74" /><stop offset="95%" stopColor="#af8c0e" /></linearGradient></defs><circle cx="10" cy="10" r="10" class="yellow" fillOpacity="0.6" /></svg>');
+}
+
+.add {
+  margin: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li svg {
+  padding-right: 5px;
+}
+
+li a {
+	text-decoration: none;
+	color: white;
+	font-size: 9px;
+	background-color: #8f3535;
+	padding: 2px 4px;
+	border-radius: 2px;
+	font-weight: bolder;
+}
+
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
