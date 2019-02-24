@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SvgGradients from './SvgGradients';
+import ArtistAddForm from './ArtistAddForm';
 
 class ArtistList extends Component {
 
@@ -22,16 +23,7 @@ class ArtistList extends Component {
               )
           })}
         </ul>
-        <form onSubmit={(event) => {
-           event.preventDefault();
-           const textField = event.target.children[0];
-           this.props.onAddArtist(textField.value);
-           textField.value = '';
-           textField.focus();
-        }}>
-          <input type="text" name="artist"  disabled={this.props.haveMaxArtists} defaultValue="Led Zeppelin" />
-          <input type="submit" value="Add" disabled={this.props.haveMaxArtists} />
-        </form>
+        <ArtistAddForm onAddArtist={this.props.onAddArtist} disabled={this.props.haveMaxArtists} />
       </div>
     );
   }
