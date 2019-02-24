@@ -1,3 +1,23 @@
+svg circle {
+  -webkit-filter: blur(0.1px);
+  -moz-filter: blur(0.1px);
+  -o-filter: blur(0.1px);
+  -ms-filter: blur(0.1px);
+  blur: 0.1px;
+}
+
+svg circle.yellow {
+  fill:url(#yellowGradient)
+}
+
+svg circle.red {
+  fill:url(#redGradient)
+}
+
+svg circle.blue {
+  fill:url(#blueGradient)
+}
+
 .App {
   text-align: center;
 }
