@@ -13,7 +13,7 @@ let db = new sqlite3.Database('./db/songs.db', (err) => {
 
 /* GET songs listing. */
 router.get('/', function(req, res, next) {
-  db.all('select * from songs limit 10', [], (err, rows) => {
+  db.all("select * from songs where (artist = ? or artist = ?) and play_count > ? order by release_year", ['Led Zeppelin', 'Aerosmith', 50], (err, rows) => {
     if (err) {
       throw err;
     }

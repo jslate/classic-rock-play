@@ -25,11 +25,29 @@ class App extends Component {
       );
     }
   }
+  renderSongCirles = () => {
+    if (typeof(this.state.songs.map) == 'function') {
+      return this.state.songs.map((song, index) => {
+       const y = (index % 8) * 20 + 20;
+       const color = song.artist == 'Led Zeppelin' ? 'red' : 'blue';
+        return (
+          <g key={song.id}>
+            <circle cx={(song.release_year - 1965) * 10} cy={y} r={song.play_count/6} fill={color} fillOpacity="0.5" />
+            <text x={(song.release_year - 1965) * 10} y={y} textAnchor="middle" fontSize="4">{song.name}</text>
+            <text x={(song.release_year - 1965) * 10} y={y + 5} textAnchor="middle" fontSize="4">{song.release_year}</text>
+          </g>
+        )
+      });
+    }
+  }
 
   render() {
     return (
       <div className="App">
         <h1>Songs</h1>
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          {this.renderSongCirles()}
+        </svg>
         <table>
           <thead>
             <tr>
