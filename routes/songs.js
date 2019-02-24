@@ -24,4 +24,15 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/artists', function(req, res, next) {
+  const name = req.query.name;
+  db.all("SELECT artist, sum(play_count) AS total_play_count FROM songs GROUP BY artist HAVING sum(play_count) > ?", [50], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    res.json(JSON.stringify(rows));
+  });
+});
+
+
 module.exports = router;
