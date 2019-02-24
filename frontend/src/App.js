@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import SvgGradients from './SvgGradients';
+import ArtistList from './ArtistList';
 const url = require('url');
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.fetchSongs = this.fetchSongs.bind(this);
-  }
-
   colors = ['red', 'yellow', 'blue', 'green'];
 
   state = {
@@ -19,8 +14,6 @@ class App extends Component {
   }
 
   fetchSongs = () => {
-
-
     fetch(`/songs?artists=${this.state.artists.join(',')}`)
       .then(res => res.json())
       .then(songs => {
@@ -72,40 +65,24 @@ class App extends Component {
 
   haveMaxArtists = () => (this.state.artists.length >= this.colors.length);
 
+  removeArtist = (name) => {
+    this.setState({ artists: this.state.artists.filter((a) => a !== name)}, this.fetchSongs);
+  }
+
+  addArtist = (name) => {
+    this.setState({ artists: [...this.state.artists, name]}, () => {
+      this.fetchSongs();
+    });
+  }
+
+  artistHashes = () => (
+    this.state.artists.map((artist) => { return { name: artist, color: this.state.artistColors[artist]}})
+  )
+
   render() {
     return (
       <div className="App">
-        <div className="add">
-          <ul>
-            {this.state.artists.map((artist) => {
-                const color = this.state.artistColors[artist];
-                return (
-                  <li className={color}>
-                    <svg viewBox="0 0 10 10" style={{ width: 10, listStyleType: 'none', display: 'inline-block' }} xmlns="http://www.w3.org/2000/svg">
-                      <SvgGradients />
-                      <circle cx={5} cy={5} r={5} className={color} fillOpacity="0.6" />
-                    </svg>
-                    {artist} <a href="remove" onClick={(event) => {
-                      event.preventDefault();
-                      this.setState({ artists: this.state.artists.filter((a) => a !== artist)}, this.fetchSongs);
-                    }}>X</a>
-                  </li>
-                )
-            })}
-          </ul>
-          <form onSubmit={(event) => {
-             event.preventDefault();
-             const textField = event.target.children[0];
-             this.setState({ artists: [...this.state.artists, textField.value]}, () => {
-               textField.value = '';
-               textField.focus();
-               this.fetchSongs();
-             });
-          }}>
-            <input type="text" name="artist"  disabled={this.haveMaxArtists()} defaultValue="Led Zeppelin" />
-            <input type="submit" value="Add" disabled={this.haveMaxArtists()} />
-          </form>
-        </div>
+        <ArtistList artists={this.artistHashes()} onRemoveArtist={this.removeArtist} onAddArtist={this.addArtist} haveMaxArtists={this.haveMaxArtists()}/>
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <SvgGradients />
           {this.renderSongCirles()}
