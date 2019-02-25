@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
   const artists = req.query.artists.split(',');
   const questionMarks = artists.map(v => '?').join(', ');
   db.all(
-    `select * from songs where artist in (${questionMarks}) and play_count > ? order by release_year`,
+    `select * from songs where release_year is not null and release_year != '' and artist in (${questionMarks}) and play_count > ? order by release_year`,
     [...artists, 50],
     (err, rows) => {
       if (err) { throw err; }
@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/artists', function(req, res, next) {
   const name = req.query.name;
-  db.all("SELECT DISTINCT(artist) FROM songs where play_count > ?", [50], (err, rows) => {
+  db.all("SELECT DISTINCT(artist) FROM songs where release_year is not null and release_year != '' and play_count > ?", [50], (err, rows) => {
     if (err) {
       throw err;
     }
