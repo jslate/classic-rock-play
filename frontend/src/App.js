@@ -33,7 +33,9 @@ class App extends Component {
   }
 
   addArtist = (name) => {
-    this.setState({ artists: [...this.state.artists, { name: name, color: this.colors[this.state.artists.length]}]}, () => {
+    const usedColors = this.state.artists.map((artist) => artist.color);
+    const nextColor = this.colors.find((color) => usedColors.indexOf(color) < 0);
+    this.setState({ artists: [...this.state.artists, { name: name, color: nextColor }] }, () => {
       this.fetchSongs();
     });
   }
