@@ -9,7 +9,8 @@ body {
 }
 
 .visualization {
-
+  max-width: calc(100vw - 20px);
+  margin-left: 10px;
 }
 
 svg circle {
@@ -40,6 +41,8 @@ svg circle.green {
 
 .add {
   margin: 0 10px;
+  max-height: 63px;
+  overflow-y: scroll;
 }
 
 ul {
