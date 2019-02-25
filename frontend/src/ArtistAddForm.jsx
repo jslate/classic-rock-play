@@ -17,7 +17,12 @@ class ArtistAddForm extends Component {
     <form onSubmit={(event) => {
        event.preventDefault();
        const textField = event.target.getElementsByTagName('input')[0];
-       this.props.onAddArtist(textField.value);
+       if (this.state.allArtists.indexOf(textField.value) >= 0) {
+         this.props.onAddArtist(textField.value);
+       } else {
+         alert('Sorry, that is not a valid artist, please use the autocompete functionality');
+       }
+
        textField.value = '';
        textField.focus();
     }}>

@@ -6,7 +6,7 @@ import './App.css';
 
 class App extends Component {
   componentDidMount() {
-    this.addArtist('Black Sabbath');
+    this.addArtist('Led Zeppelin');
   }
 
   colors = ['red', 'yellow', 'blue', 'green'];
