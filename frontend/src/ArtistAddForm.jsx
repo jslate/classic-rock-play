@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Autocomplete from 'react-autocomplete';
 
 class ArtistAddForm extends Component {
 
@@ -14,23 +13,28 @@ class ArtistAddForm extends Component {
       .catch((err) => console.error(err))
   }
 
-  render() {
-    return (
-      <form onSubmit={(event) => {
-         event.preventDefault();
-         const textField = event.target.children[0];
-         this.props.onAddArtist(this.state.value);
-         this.setState({ value: '' });
-         textField.focus();
-      }}>
-        <datalist id="allArtists">
-          {this.state.allArtists.map((artist) => <option>{artist.artist}</option>)}
-        </datalist>
-        <input type="text" name="artist" list="allArtists" value={this.state.value} onChange={(event) => this.setState({ value: event.target.value })} autocomplete="off" disabled={this.props.disabled} />
-        <input type="submit" value="Add" disabled={this.props.disabled} />
-      </form>
-    );
-  }
+  render = () => (
+    <form onSubmit={(event) => {
+       event.preventDefault();
+       const textField = event.target.getElementsByTagName('input')[0];
+       this.props.onAddArtist(textField.value);
+       textField.value = '';
+       textField.focus();
+    }}>
+      <datalist id="allArtists">
+        {this.state.allArtists.map((artist) => <option key={artist}>{artist}</option>)}
+      </datalist>
+      <input
+        type="text"
+        name="artist"
+        list="allArtists"
+        onChange={(event) => this.setState({ value: event.target.value })}
+        autoComplete="off"
+        disabled={this.props.disabled}
+      />
+      <input type="submit" value="Add" disabled={this.props.disabled} />
+    </form>
+  );
 }
 
 export default ArtistAddForm;
