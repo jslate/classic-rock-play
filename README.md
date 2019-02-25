@@ -5,3 +5,12 @@ The data are from 25 stations from across the United States for one week in June
 ![Aerosmith vs. Led Zeppelin](/public/images/led-zeppelin-aerosmith-screenshot.png)
 
 This is an Express (Node.js) application with a React application for the frontend. I haven't really worked much with Express before so I'm sure I'm doing some things wrong. I'm not setting propTypes on my components and there really aren't any tests. But hey, it's just for fun!
+
+You should in theory be able to run the project:
+
+1. `yarn`
+1. `cd frontend && yarn && cd ..`
+1. `yarn server`
+1. (in another terminal) `yarn client`
+
+There are some layout issues if your window is over 1000px wide, and it probably doesn't work to well on a phone, for that matter.

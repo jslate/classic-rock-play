@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/jslate/.nvm/versions/node/v11.9.0/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add aa-sqlite
+  /Users/jslate/.nvm/versions/node/v11.9.0/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js server
 
 PATH: 
   /Users/jslate/.nvm/versions/node/v11.9.0/bin:/Users/jslate/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
@@ -14,17 +14,12 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/aa-sqlite: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:66255:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:129397:22)
-      at Request.emit (events.js:197:13)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:130369:10)
-      at Request.emit (events.js:197:13)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:130291:12)
-      at Object.onceWrapper (events.js:285:13)
-      at IncomingMessage.emit (events.js:202:15)
-      at endReadableNT (_stream_readable.js:1129:12)
-      at processTicksAndRejections (internal/process/next_tick.js:76:17)
+  SyntaxError: /Users/jslate/src/classic-rock-play/package.json: Unexpected token } in JSON at position 177
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:304:30)
+      at /usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:315:13
 
 npm manifest: 
   {
@@ -32,7 +27,8 @@ npm manifest:
     "version": "0.0.0",
     "private": true,
     "scripts": {
-      "start": "PORT=3001 nodemon ./bin/www"
+      "client": "cd client && yarn start",
+      "server": "PORT=3001 nodemon ./bin/www",
     },
     "dependencies": {
       "cookie-parser": "~1.4.3",
@@ -44,6 +40,7 @@ npm manifest:
       "node-sass-middleware": "0.11.0",
       "nodemon": "^1.18.10",
       "pug": "2.0.0-beta11",
+      "sqlite-async": "^1.0.11",
       "sqlite3": "^4.0.6"
     }
   }
@@ -2861,7 +2858,14 @@ Lockfile:
     dependencies:
       extend-shallow "^3.0.0"
   
-  sqlite3@^4.0.6:
+  sqlite-async@^1.0.11:
+    version "1.0.11"
+    resolved "https://registry.yarnpkg.com/sqlite-async/-/sqlite-async-1.0.11.tgz#3a7d78a30682c51175a52b3c6b0da155165dbb47"
+    integrity sha512-/tH7JZw5/MD2yKHmr3lCi18BU6NkljR4QpEyXI09qvVPTkxg1Lpa2GMA429FKo0SnCLIjqIyn3wRgKnD4Mvx7g==
+    dependencies:
+      sqlite3 "^4.0.4"
+  
+  sqlite3@^4.0.4, sqlite3@^4.0.6:
     version "4.0.6"
     resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-4.0.6.tgz#e587b583b5acc6cb38d4437dedb2572359c080ad"
     integrity sha512-EqBXxHdKiwvNMRCgml86VTL5TK1i0IKiumnfxykX0gh6H6jaKijAXvE9O1N7+omfNSawR2fOmIyJZcfe8HYWpw==
