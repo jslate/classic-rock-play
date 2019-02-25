@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "client": "cd frontend && yarn start",
-    "server": "PORT=3001 nodemon ./bin/www"
+    "server": "nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
